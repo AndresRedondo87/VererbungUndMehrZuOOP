@@ -10,7 +10,7 @@ namespace VererbungUndMehrZuOOP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Vererbung Demo:");
+            Console.WriteLine("Vererbung Demo:\n\n");
 
             //// Kurzer test für Methoden für alle Objekte zu sehen
             ///// Da sieht man die Equals, GetHashCode, GetType, ToString und Update Methoden.
@@ -27,23 +27,41 @@ namespace VererbungUndMehrZuOOP
 
             // Testen das Default(normale) ToString: "VererbungUndMehrZuOOP.Post"
             // Testen das bearbeitete ToString: "0 - Mein erster Post - von Denis Panjuta"
-            Console.WriteLine($"NORMAL POST ToString Methode: {post1.ToString()}");
+            Console.WriteLine($"NORMAL POST ToString Methode: \n{post1.ToString()}\n");
             //
 
 
             // IMAGE POSTS
             // wie normaler Post aber mit + Image Link
             ImagePost bildPost1 = new ImagePost("Hier sind sie!", "Denis Panjuta", "https://bilder.de/meineschuhe", true);
-            Console.WriteLine("IMAGE POST ToString Methode : {0}", bildPost1.ToString());    
+            Console.WriteLine("IMAGE POST ToString Methode : \n{0}\n", bildPost1.ToString());
             // hier funktioniert ToString auch wie beim normalerPost
             // ID ist schon nach 2 hochgezählt
             // nur wir sehen noch kein ImageURL
 
             //VIDEO POSTS
+            // wie normaler Post aber mit + Video Link
+            VideoPost videoPost1 = new VideoPost("so renne ich schneller!", "Denis Panjuta", "https://videos.de/meineSprints", true);
+            Console.WriteLine("VIDEO POST ToString Methode : \n{0}\n", videoPost1.ToString());
 
 
 
             Console.ReadKey();
         }
+
+
+        // HERAUSFORDERUNG 
+        // Füge eine erbende Klasse "VideoPost" hinzu, mit den Eigenschaften VideoURL und Length
+        // Erstelle die benötigten Konstrutoren um ein VideoPost Objekt anzulegen
+        // Passe die ToString Methode entsprechend an
+        // Erstelle eine Instanz von VideoPost und verwende die ToString Methode darauf.
+
+        // Für Fortgeschrittene:
+        // Verwende einen Timer und eine Callback Methode in diesem Beispiel (google wie das geht) ;)
+        // Erstelle die Felder die Benötigt werden
+        // Füge die Member Methode "Play" hinzu, welche regelmäßig die aktuelle Laufzeit des Videos anzeigen soll
+        // Füge eine "Stop" Methode hinzu, welche den "Timer" stoppt und auf die Konsole schreibt "Angehalten bei {0}s" 
+        // Spiele das Video nach der Erstellung der Instanz ab und stoppe es, wenn der Benutzer irgendeine Taste drückt.
+
     }
 }
