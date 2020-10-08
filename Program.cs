@@ -41,7 +41,7 @@ namespace VererbungUndMehrZuOOP
 
             //VIDEO POSTS
             // wie normaler Post aber mit + Video Link
-            VideoPost videoPost1 = new VideoPost("so renne ich schneller!", "Denis Panjuta", "https://videos.de/meineSprints", true);
+            VideoPost videoPost1 = new VideoPost("so renne ich schneller!", "Denis Panjuta", "https://videos.de/meineSprints", true, 95);
             Console.WriteLine("VIDEO POST ToString Methode : \n{0}\n", videoPost1.ToString());
 
 
