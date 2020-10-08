@@ -69,7 +69,7 @@ namespace VererbungUndMehrZuOOP
             {
                 isPlaying = true;
                 Console.WriteLine("Spiele Video ab");
-                timer = new Timer(MyTimerCallBack, null, 0, 1000);
+                timer = new Timer(MyTimerCallBack, null, 0, 1000);      //State null??
                 // TimerCallBack,Zustand(null)erstmal egal, starten ab 0 und periode 1000ms bzw. 1 Sekunde.
                 // JEDE SEKUNDE NACH AUFRUF VON DIESE TIMER, WIRD DIE TimerCallBack AUFGERUFEN!!
                 // das ist der Sinn von diese Timer bzw TimerCallback!
@@ -78,6 +78,33 @@ namespace VererbungUndMehrZuOOP
 
         // WTF TIMER CALLBACK MIT OBJEKT PARAMETER!!!!!!
         //SOWAS KENNT MAN BISHER GAR NICHT!!!
+
+        // AUS DER TIMER DEKLARATION INFOS:
+        // Zusammenfassung:
+        //     Initialisiert eine neue Instanz der Timer -Klasse unter Verwendung einer 32-Bit-Ganzzahl
+        //     mit Vorzeichen zum Angeben des Zeitintervalls.
+        //
+        // Parameter:
+        //   callback:
+        //     Ein System.Threading.TimerCallback Delegat, der eine auszuführende Methode darstellt.
+        //
+        //   state:
+        //     Ein Objekt, das von der Rückrufmethode zu verwendenden Informationen enthält
+        //     oder null.
+        //
+        //   dueTime:
+        //     Die Zeitspanne zu verzögern, bevor callback aufgerufen wird, in Millisekunden.
+        //     Geben Sie System.Threading.Timeout.Infinite zum Starten des Zeitgebers zu verhindern.
+        //     Geben Sie 0 (null) an, um den Timer sofort zu starten.
+        //
+        //   period:
+        //     Das Zeitintervall zwischen den Aufrufen der callback, in Millisekunden. Geben
+        //     Sie System.Threading.Timeout.Infinite um periodisches Signalisieren zu deaktivieren.
+        //
+        // Ausnahmen:
+        //   T:System.ArgumentOutOfRangeException:
+        //     Die dueTime oder period -Parameter ist negativ und ungleich System.Threading.Timeout.Infinite.
+        //   T:System.ArgumentNullException:    Der callback-Parameter ist null.
         private void MyTimerCallBack(Object o)
         {
             if (currDuration < Length)  // Video noch nicht fertig.
