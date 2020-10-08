@@ -29,6 +29,12 @@ namespace VererbungUndMehrZuOOP
         // Spiele das Video nach der Erstellung der Instanz ab und stoppe es, wenn der Benutzer irgendeine Taste drückt.
 
 
+        // Member Feld - Für fortg.
+        protected bool isPlaying = false;
+        protected int currDuration = 0;     //aktuelle dauer des Videos, wo sind wir gerade
+        Timer timer;                        // timers brauchen System.Threading... war schon da.
+
+        //Eigenschaften
         protected string VideoURL { get; set; }
         protected int Length { get; set; }
 
@@ -40,6 +46,7 @@ namespace VererbungUndMehrZuOOP
 
         public VideoPost(string title, string sendByUsername, string videoURL, bool isPublic, int length)
         {
+            //von Post geerbt
             this.ID = GetNextID();
             this.Title = title;
             this.SendByUserName = sendByUsername;
@@ -54,6 +61,49 @@ namespace VererbungUndMehrZuOOP
             //return String.Format("{0} - {1} - von {2}, BILD: {3}", this.ID, this.Title, this.SendByUserName, this.VideoURL);
             //selber Formatierung verbessert
             return String.Format($"{this.ID} - {this.Title} - von {this.SendByUserName}, \n\tVIDEO: {this.VideoURL}\n\tLength: {this.Length}");
+        }
+
+        public void Play()
+        {
+            if (!isPlaying) //wenn video schon lauft, dann machen wir gar nichts.
+            {
+                isPlaying = true;
+                Console.WriteLine("Spiele Video ab");
+                timer = new Timer(MyTimerCallBack, null, 0, 1000);
+                // TimerCallBack,Zustand(null)erstmal egal, starten ab 0 und periode 1000ms bzw. 1 Sekunde.
+                // JEDE SEKUNDE NACH AUFRUF VON DIESE TIMER, WIRD DIE TimerCallBack AUFGERUFEN!!
+                // das ist der Sinn von diese Timer bzw TimerCallback!
+            }
+        }
+
+        // WTF TIMER CALLBACK MIT OBJEKT PARAMETER!!!!!!
+        //SOWAS KENNT MAN BISHER GAR NICHT!!!
+        private void MyTimerCallBack(Object o)
+        {
+            if (currDuration < Length)  // Video noch nicht fertig.
+            {
+                currDuration++;
+                Console.WriteLine("Video ist bei {0}s", currDuration);
+                GC.Collect();
+                //GARBAGE COLLECTOR WAS SOLL DER SCHEISS HIER EHRLICH!!
+                //GC.Collect() machtSpeicher frei "mull, overhead"
+            }
+            else                       //Video beendet (bis zum Ende gespielt)
+            {
+                Stop();
+            }
+        }
+
+        // wenn zu Ende ist, Timer Löschen und current duration zurück zu 0 setzen
+        public void Stop()
+        {
+            if (isPlaying)
+            {
+                isPlaying = false;  //es spielt nicht mehr
+                Console.WriteLine("Angehalten bei {0}s", currDuration); // eigentlich immer das gleiche
+                currDuration = 0;
+                timer.Dispose();    // timer ins Müll wegwerfen.
+            }
         }
     }
 }

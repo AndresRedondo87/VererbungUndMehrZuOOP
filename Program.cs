@@ -41,11 +41,30 @@ namespace VererbungUndMehrZuOOP
 
             //VIDEO POSTS
             // wie normaler Post aber mit + Video Link
-            VideoPost videoPost1 = new VideoPost("so renne ich schneller!", "Denis Panjuta", "https://videos.de/meineSprints", true, 95);
+            VideoPost videoPost1 = new VideoPost("so renne ich schneller!", "Denis Panjuta", "https://videos.de/meineSprints", true, 12);
             Console.WriteLine("VIDEO POST ToString Methode : \n{0}\n", videoPost1.ToString());
+            videoPost1.Play();
+
+            //EIGENE Lösung
+            // Spiele das Video nach der Erstellung der Instanz ab und stoppe es, wenn der Benutzer irgendeine Taste drückt.
+            Console.WriteLine("Drücke irgendeine Taste um das Video zu stoppen!");
+            string keyPressed = string.Empty;
+            keyPressed = Console.ReadKey().ToString();
+            if (keyPressed != string.Empty)
+            {
+                videoPost1.Stop();
+            }
+
+            //// LEHRER LÖSUNG
+            /// kann man einfach nur readkey und stop nacheinander setzen weil stop tut sowieso nichts wenn timer schon abgelaufen ist, so es macht kein Problem
+            /// ich finde sowieso meine Lösung eindeutiger, funktionieren fast das gleiche
+            //Console.WriteLine("Drücke irgendeine Taste um das Video zu stoppen!");
+            //Console.ReadKey();
+            //videoPost1.Stop();
 
 
 
+            Console.WriteLine("\nENDE");
             Console.ReadKey();
         }
 
